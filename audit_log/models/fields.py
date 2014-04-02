@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from audit_log import registration
 
 if hasattr(settings, 'AUTH_USER_MODEL'):
@@ -27,7 +27,7 @@ class LastUserField(models.ForeignKey):
 rules = [((LastUserField,),
     [],    
     {   
-        'to': ['rel.to', {'default': User}],
+        'to': ['rel.to', {'default': AUTH_USER_MODEL}],
         'null': ['null', {'default': True}],
     },)]
 
